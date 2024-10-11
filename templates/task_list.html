@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Asegúrate de tener un archivo CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Task List</h1>
+        <ul id="taskList">
+            <!-- Aquí se iteran las tareas pasadas desde el servidor -->
+            {% for task in tasks %}
+            <li>
+                <span>{{ task.title }} - {{ task.description }}</span>
+                <button class="edit-btn" data-task-id="{{ task.id }}">Edit</button>
+                <button class="delete-btn" data-task-id="{{ task.id }}">Delete</button>
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <h2>Edit Task</h2>
+        <form id="editTaskForm">
+            <input type="hidden" id="taskId">
+            <input type="text" id="editTitle" placeholder="Title" required>
+            <input type="text" id="editDescription" placeholder="Description" required>
+            <button type="submit">Update Task</button>
+        </form>
+    </div>
+
+    <!-- Script para manejar la lógica de editar/eliminar tareas -->
+    <script src="/static/app.js"></script> <!-- Si tienes un archivo JS en static -->
+</body>
+</html>

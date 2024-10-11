@@ -1,0 +1,106 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Lista de tareas */
+ul#taskList {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul#taskList li {
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Contenedor para el texto y los botones */
+ul#taskList li span {
+    flex-grow: 1;
+}
+
+/* Botones de editar y eliminar */
+button.edit-btn, button.delete-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+button.delete-btn {
+    background-color: #dc3545;
+}
+
+button.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Formulario de edición */
+form#editTaskForm {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+form#editTaskForm input[type="text"] {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form#editTaskForm button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form#editTaskForm button:hover {
+    background-color: #218838;
+}
+
+/* Alinear los botones al lado derecho */
+button.edit-btn, button.delete-btn {
+    margin-left: 10px;
+    margin-right: 0;
+}

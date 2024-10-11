@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .alert {
+            display: none;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .alert.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .alert.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Crear Tarea</h1>
+    <div class="form-group">
+        <label for="title">Título de la Tarea</label>
+        <input type="text" id="title" placeholder="Escribe el título de la tarea">
+    </div>
+    <div class="form-group">
+        <label for="description">Descripción de la Tarea</label>
+        <textarea id="description" rows="4" placeholder="Escribe la descripción de la tarea"></textarea>
+    </div>
+    <button onclick="createTask()">Crear Tarea</button>
+
+    <div id="alert" class="alert"></div>
+</div>
+
+<script>
+    async function createTask() {
+        const title = document.getElementById('title').value;
+        const description = document.getElementById('description').value;
+        const alertBox = document.getElementById('alert');
+
+        if (title === '' || description === '') {
+            alertBox.textContent = 'Por favor, completa todos los campos';
+            alertBox.className = 'alert error';
+            alertBox.style.display = 'block';
+            return;
+        }
+
+        const task = {
+            title: title,
+            description: description
+        };
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/create_task', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(task)
+            });
+
+            if (response.ok) {
+                alertBox.textContent = 'Tarea creada exitosamente';
+                alertBox.className = 'alert success';
+                alertBox.style.display = 'block';
+            } else {
+                throw new Error('Error al crear la tarea');
+            }
+        } catch (error) {
+            alertBox.textContent = 'Error: ' + error.message;
+            alertBox.className = 'alert error';
+            alertBox.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
