@@ -71,17 +71,17 @@
 <body>
 
 <div class="container">
-    <h1>Crear Tarea</h1>
+    <h1>Create Task</h1>
     <div class="form-group">
-        <label for="title">Título de la Tarea</label>
-        <input type="text" id="title" placeholder="Escribe el título de la tarea">
+        <label for="title">Task Title</label>
+        <input type="text" id="title" placeholder="Enter the task title">
     </div>
     <div class="form-group">
-        <label for="description">Descripción de la Tarea</label>
-        <textarea id="description" rows="4" placeholder="Escribe la descripción de la tarea"></textarea>
+        <label for="description">Task Description</label>
+         <textarea id="description" rows="4" placeholder="Enter the task description"></textarea>
     </div>
-    <button onclick="createTask()">Crear Tarea</button>
-
+    <button onclick="createTask()">Create Task</button>
+    
     <div id="alert" class="alert"></div>
 </div>
 
@@ -92,7 +92,7 @@
         const alertBox = document.getElementById('alert');
 
         if (title === '' || description === '') {
-            alertBox.textContent = 'Por favor, completa todos los campos';
+            alertBox.textContent = 'Please fill out all fields';
             alertBox.className = 'alert error';
             alertBox.style.display = 'block';
             return;
@@ -113,11 +113,11 @@
             });
 
             if (response.ok) {
-                alertBox.textContent = 'Tarea creada exitosamente';
+                alertBox.textContent = 'Task created successfully';
                 alertBox.className = 'alert success';
                 alertBox.style.display = 'block';
             } else {
-                throw new Error('Error al crear la tarea');
+                throw new Error('Error creating the task');
             }
         } catch (error) {
             alertBox.textContent = 'Error: ' + error.message;
